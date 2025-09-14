@@ -58,3 +58,46 @@ Systém obsahuje chybějící funkce:
 	- nějaké funkce z pohledu klientské části jsou realizovaný staticky pomocí slovníku, které se vrací pomocí vytvořených endpointů (zde bude potřeba napojit přímo na BE)
 	- chybějící funkce jsou vyznačený v kódu formou komentářů a alert dialogu, který jsem dával tam, kde chybí jednotlivé API
 	
+# Odpovědi
+## Vedoucí práce:
+
+1. Na obrázku 3.8 je uveden tzv. User Flow diagram. Jaký je rozdíl mezi tímto
+diagramem a diagramem aktivit v jazyce UML? V čem se liší jejich vyjadřovací schopnosti?
+
+### User Flow diagram
+Vyjadřuje cestu uživatele rozhraním aplikace/systému k dokončení nějakého tasku/úkolu. Nemá tak bohatou notaci. Jedná se o neformální nástroj, který se běžně používá v UX/UI návrhu. Popisuje interakce uživatele s rozhraním systému.
+
+### Diagram aktivit
+Diagram popisuje sled událostí buď z pohledu systému, nebo z pohledu uživatele - zaměřuje se na procesní logiku. Má rozsáhlejší notaci, takže umožňuje paralelní běh aktivit a jejich synchronizaci.
+
+2. Jaké kroky bude nutné provést, aby mohl případný řešitel backendové části plynule
+napojit svou backendovou část na Vámi vytvořený frontend? Popište technologický
+postup.
+
+Prvním krokem bude identifikace chybějících částí:  
+- pomocí průchodu aktuální verzí systému, kde je buď popis přímo na klientské části (warning dialog/text na FE)  
+- průchodem jednotlivých *pages* v projektové složce, kde jsou předpřipravené obslužné funkce se zakomentovaným nefunkčním/dummy API requestem z FE  
+
+### Další kroky
+- **Zkontrolovat jednotlivá API volání** v kódu a pročíst přiložené komentáře, kde je popsáno, která volání chybí nebo jsou pouze dummy.  
+- **Doplnit API požadavky na backend** dle aktuálně realizované části a dostupné verze Swaggeru, která je v rámci projektu k dispozici.  
+- **Ověřit správné volání** ve složce `api/` a zkontrolovat jejich využití v jednotlivých obslužných funkcích.  
+- **Nastavit správné datové modely**, aby odpovídaly definicím ve Swaggeru a frontend dokázal s daty pracovat bez úprav.  
+- **Provést integrační testy** – ověřit, že se frontendové komponenty správně napojují na backend, API vrací očekávané odpovědi.  
+- **Zdokumentovat propojení** – aktualizovat Swagger dle nových endpointů a doplnit stručný návod pro vývojáře backendu.  
+
+## Oponent
+
+1. Jakou podporu aplikace poskytuje (resp. by měla poskytovat) pro podporu
+dokumentů spojených s organizací a hodnocením praxí?
+
+Aplikace by měla poskytovat:  
+- **Automatické generování dokumentů** dle existující předlohy (např. pomocí knihovny *pydoc* nebo její obdoby). Dokumenty se vytvoří v okamžiku schválení přihlášky a uloží se do úložiště backendu pod cizím klíčem studenta a praxe.  
+- **Evidenci cest k dokumentům** – odkaz (cesta) na každý vytvořený dokument se uloží do databáze, aby bylo možné dokumenty snadno zpětně dohledat.  
+- **Zjednodušené verzování** – dokumenty se při změně přepisují v úložišti, není nutné držet vícero historických verzí.  
+- **Řízení přístupu** – dokumenty jsou dostupné jen přihlášeným účastníkům, a to na základě jejich rolí a oprávnění definovaných ve workflow aplikace.  
+- **Uživatelskou práci s dokumenty** – možnost dokumenty z frontendu stáhnout a v případě potřeby i znovu nahrát („přenahrát“).  
+
+
+
+ 
